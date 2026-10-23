@@ -1,0 +1,31 @@
+# Qualitative WSI demo (D-037): unsupervised clusters of a whole slide labelled by PathJev-P.
+# Every parameter is fixed here BEFORE the first run; nothing is tuned on the outputs.
+# HiESD is a clean, unseen-domain test source: no training, no selection on it.
+name: demo-hiesd
+source: hiesd
+slides:
+  n: 4
+  seed: wsi-demo-v1
+  # eligibility (uses the region masks only to pick slides that show several tissue types):
+  min_classes: 3            # mask classes with >= min_class_px pixels at 64x downsampling
+  min_class_px: 200
+tiling:
+  tile_l0: 448              # level-0 px (40x) -> 224 px at 20x-equivalent, as the HiESD patch adapter
+  tile_px: 224
+  min_tissue: 0.5           # same tissue rule as the adapter (pathjev.sources.hiesd.tissue_fraction)
+features: H-optimus-0       # CLS features (pathjev.baselines.extract_features)
+clustering:
+  pca_components: 50
+  k_range: [8, 30]          # GMM (diagonal covariance), k by BIC in steps of 2 (research_plan §6.4)
+  k_step: 2
+  seed: 0
+labelling:
+  model_run: s1-jev-lr2e-4-e3-s1   # PathJev-P seed 1, checkpoint chosen on validation (D-033)
+  representatives: 16       # tiles per cluster with the highest membership
+  questions: [tissue, present:adenocarcinoma]   # templates copied from the HiESD test states
+  aggregate: mean           # cluster distribution = mean of its representatives' distributions
+  temperature: none         # raw probabilities (no test-derived temperature)
+  abstain_below: 0.5        # cluster abstains if its top probability < 0.5
+reference:
+  dense: true               # PathJev-P on every tile, for comparison (cost and agreement)
+  gt_purity: 0.9            # a tile gets a mask label when >= 90 % of its mask pixels share one class

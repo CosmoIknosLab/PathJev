@@ -1,0 +1,25 @@
+# Phase 0: reproduce OmniMed-Jev's released classification numbers.
+# Reference values and tolerances were fixed on 2026-10-15, BEFORE any run.
+upstream_commit: 68be52a3f99d93b08079baf774eb09280b144be7
+checkpoint_repo: xmutly/OmniMed-Jev-4B@3b933ab3fff893e2727c94b63e2ab4cd6e156ac3
+backbone_repo: google/medgemma-1.5-4b-it@91850547d9f0b2fdd21aa7c5f4f3d1a8a52c243b
+states: data/splits/testing_states.jsonl      # relative to the upstream clone
+ground_truth: data/splits/testing_sft.jsonl   # same rows, generative-arm format
+inference:                                    # upstream defaults (infer_medjev.py)
+  batch_size: 8
+  max_length: 3072
+  image_size: 448
+  four_bit: true
+reference:
+  # README "Point prediction" table and data/figure_data/fig2_dynamics.json (step 2424)
+  classification_balanced_accuracy: 0.6892
+  # README "Decision quality" table and data/figure_data/fig3_reliability_resolution.json
+  classification_ece: 0.08064698211848735
+  classification_n: 200
+tolerance:
+  # Same weights and rows; residual differences can only come from kernels,
+  # library versions (transformers 5.19 here) and GPU type. Balanced accuracy is
+  # pooled over all class strings (many classes have 1-5 test rows), so a single
+  # flipped row can move it by ~1/K; the report also prints the raw hit count.
+  balanced_accuracy_abs: 0.02
+  ece_abs: 0.02

@@ -1,0 +1,12 @@
+# SICAPv2: official patient-based partition (train/test); val carved from train by patient hash.
+source: sicapv2
+template: sicapv2.yaml
+split_mode: official
+seed: pathjev-v1
+out: states/sicapv2
+mosaic:
+  k: [2, 3, 4]
+  per_split: {train: 1500, val: 150, test: 300}
+  mixed_ratio: 0.5
+  tile_px: 224
+  tile_mode: resize

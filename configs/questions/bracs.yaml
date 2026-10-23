@@ -1,0 +1,56 @@
+# Typed decisions for BRACS RoIs (breast). Labels: BRACS 7-class RoI label,
+# grouped by the dataset authors into benign / atypical / malignant
+# (Brancati et al., Database 2022). Reads: Record.label (RoI class folder name).
+template_version: 1
+source: bracs
+organ: breast
+reads: [label]
+
+candidates:
+  normal: normal breast tissue
+  benign: benign proliferative lesion (pathological benign)
+  udh: usual ductal hyperplasia
+  fea: flat epithelial atypia
+  adh: atypical ductal hyperplasia
+  dcis: ductal carcinoma in situ
+  invasive: invasive carcinoma
+  organ_breast: breast
+  organ_colorectal: colon or rectum
+  organ_lung: lung
+  organ_skin: skin
+  organ_stomach: stomach
+  organ_liver: liver
+  organ_prostate: prostate
+  organ_cervix: uterine cervix
+  organ_lymph_node: lymph node
+
+label_map: {N: normal, PB: benign, UDH: udh, FEA: fea, ADH: adh, DCIS: dcis, IC: invasive}
+
+decisions:
+  - qid: lesion
+    type: choice
+    instructions: Which breast lesion category best describes this region?
+    candidates: [normal, benign, udh, fea, adh, dcis, invasive]
+    add_other: true
+  - qid: present:invasive_carcinoma
+    type: noul
+    instructions: Is invasive carcinoma present in this region?
+    positive: [invasive]
+  - qid: present:carcinoma
+    type: noul
+    instructions: Is carcinoma (in situ or invasive) present in this region?
+    positive: [dcis, invasive]
+  - qid: risk_group
+    type: score
+    instructions: How would you grade this region on the benign, atypical, malignant scale?
+    levels:
+      - {id: L0, text: benign}
+      - {id: L1, text: atypical}
+      - {id: L2, text: malignant}
+    level_of: {normal: L0, benign: L0, udh: L0, fea: L1, adh: L1, dcis: L2, invasive: L2}
+  - qid: organ
+    type: choice
+    instructions: Which organ is this tissue from?
+    candidates: [organ_breast, organ_colorectal, organ_lung, organ_skin, organ_stomach, organ_liver, organ_prostate, organ_cervix, organ_lymph_node]
+    constant_gold: organ_breast
+    add_other: true

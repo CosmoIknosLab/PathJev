@@ -1,0 +1,79 @@
+{
+ "rule": "D-029: min val Choice NLL of the D-020-selected checkpoint across the grid",
+ "arm": "jev",
+ "best_run": "s1-jev-lr2e-4-e3-s1",
+ "runs": {
+  "s1-jev-lr1e-4-e3-s1": {
+   "checkpoint": "$PATHJEV_WORK/runs/train_s1-jev-lr1e-4-e3-s1/lora/checkpoint-2500",
+   "val_choice_nll": 0.3068470195724568,
+   "entries": [
+    "bracs/lesion",
+    "bracs/organ",
+    "sicapv2/gleason_pattern",
+    "sicapv2/organ",
+    "spider-breast/organ",
+    "spider-breast/tissue",
+    "spider-colorectal/organ",
+    "spider-colorectal/tissue",
+    "spider-skin/organ",
+    "spider-skin/tissue",
+    "spider-thorax/organ",
+    "spider-thorax/tissue"
+   ]
+  },
+  "s1-jev-lr1e-4-e5-s1": {
+   "checkpoint": "$PATHJEV_WORK/runs/train_s1-jev-lr1e-4-e5-s1/lora/checkpoint-2500",
+   "val_choice_nll": 0.3261320722732408,
+   "entries": [
+    "bracs/lesion",
+    "bracs/organ",
+    "sicapv2/gleason_pattern",
+    "sicapv2/organ",
+    "spider-breast/organ",
+    "spider-breast/tissue",
+    "spider-colorectal/organ",
+    "spider-colorectal/tissue",
+    "spider-skin/organ",
+    "spider-skin/tissue",
+    "spider-thorax/organ",
+    "spider-thorax/tissue"
+   ]
+  },
+  "s1-jev-lr2e-4-e3-s1": {
+   "checkpoint": "$PATHJEV_WORK/runs/train_s1-jev-lr2e-4-e3-s1/lora/checkpoint-2500",
+   "val_choice_nll": 0.29361863840673136,
+   "entries": [
+    "bracs/lesion",
+    "bracs/organ",
+    "sicapv2/gleason_pattern",
+    "sicapv2/organ",
+    "spider-breast/organ",
+    "spider-breast/tissue",
+    "spider-colorectal/organ",
+    "spider-colorectal/tissue",
+    "spider-skin/organ",
+    "spider-skin/tissue",
+    "spider-thorax/organ",
+    "spider-thorax/tissue"
+   ]
+  },
+  "s1-jev-lr2e-4-e5-s1": {
+   "checkpoint": "$PATHJEV_WORK/runs/train_s1-jev-lr2e-4-e5-s1/lora/checkpoint-3750",
+   "val_choice_nll": 0.30634339927924265,
+   "entries": [
+    "bracs/lesion",
+    "bracs/organ",
+    "sicapv2/gleason_pattern",
+    "sicapv2/organ",
+    "spider-breast/organ",
+    "spider-breast/tissue",
+    "spider-colorectal/organ",
+    "spider-colorectal/tissue",
+    "spider-skin/organ",
+    "spider-skin/tissue",
+    "spider-thorax/organ",
+    "spider-thorax/tissue"
+   ]
+  }
+ }
+}

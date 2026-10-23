@@ -1,0 +1,2 @@
+# Shared organ vocabulary used by the `organ` Choice in every template (keep in sync).
+breast colorectal lung skin stomach liver prostate cervix lymph_node

@@ -1,0 +1,5 @@
+# Engineering smoke test on ADHOC (not a reported experiment): 40 BRACS test patch states.
+name: smoke
+seed: 1
+sets:
+  - {name: bracs, states: states/bracs/test_patch.jsonl, cap: 40}

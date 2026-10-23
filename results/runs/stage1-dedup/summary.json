@@ -1,0 +1,154 @@
+{
+ "records": 227069,
+ "unique_images": 194377,
+ "max_bits": 3,
+ "near_pairs": 84,
+ "exact_pairs": 83,
+ "largest_band_bucket": 110,
+ "same_file_in_train_and_test": {},
+ "cross_role": {
+  "test:spider-skin": {
+   "test_states_hit": 2,
+   "train_side": {
+    "train:spider-skin": 2
+   },
+   "examples": [
+    [
+     "spider-skin:patch_0789779",
+     "spider-skin:patch_1494886",
+     "exact"
+    ],
+    [
+     "spider-skin:patch_0968213",
+     "spider-skin:patch_1796320",
+     "near"
+    ]
+   ]
+  },
+  "test-full:spider-skin": {
+   "test_states_hit": 4,
+   "train_side": {
+    "val:spider-skin": 1,
+    "train:spider-skin": 3
+   },
+   "examples": [
+    [
+     "spider-skin:patch_0835082",
+     "spider-skin:patch_0451040",
+     "exact"
+    ],
+    [
+     "spider-skin:patch_0789779",
+     "spider-skin:patch_1494886",
+     "exact"
+    ],
+    [
+     "spider-skin:patch_0968213",
+     "spider-skin:patch_1796320",
+     "near"
+    ],
+    [
+     "spider-skin:patch_1173271",
+     "spider-skin:patch_2429498",
+     "exact"
+    ]
+   ]
+  }
+ },
+ "train_vs_val": {
+  "pairs": 0,
+  "examples": []
+ },
+ "within_test_cross_group": {
+  "test-full:hepatobench": {
+   "pairs": 80,
+   "states": 160,
+   "examples": [
+    [
+     "hepatobench:02_FIB_15781",
+     "hepatobench:02_FIB_16207",
+     "exact"
+    ],
+    [
+     "hepatobench:02_FIB_15782",
+     "hepatobench:02_FIB_16208",
+     "exact"
+    ],
+    [
+     "hepatobench:02_FIB_15783",
+     "hepatobench:02_FIB_16209",
+     "exact"
+    ],
+    [
+     "hepatobench:02_FIB_15784",
+     "hepatobench:02_FIB_16210",
+     "exact"
+    ],
+    [
+     "hepatobench:02_FIB_15785",
+     "hepatobench:02_FIB_16211",
+     "exact"
+    ]
+   ]
+  }
+ },
+ "cross_dataset": {},
+ "effect_capped_sets": {
+  "spider-skin": {
+   "n": 5000,
+   "removed": 2,
+   "pathjev": {
+    "bacc_all": 0.7758426814545488,
+    "bacc_kept": 0.7758065309927712,
+    "ece_all": 0.03463339236813494,
+    "ece_kept": 0.03467937969180992,
+    "per_seed": [
+     {
+      "bacc_all": 0.7629449752674079,
+      "bacc_kept": 0.762911195327714,
+      "ece_all": 0.026822253882912584,
+      "ece_kept": 0.02687339326542401
+     },
+     {
+      "bacc_all": 0.7603730675460477,
+      "bacc_kept": 0.760337509714791,
+      "ece_all": 0.059748620602715394,
+      "ece_kept": 0.059789753275983445
+     },
+     {
+      "bacc_all": 0.804210001550191,
+      "bacc_kept": 0.8041708879358085,
+      "ece_all": 0.017329302618776844,
+      "ece_kept": 0.01737499253402229
+     }
+    ]
+   },
+   "sft": {
+    "bacc_all": 0.818641163676677,
+    "bacc_kept": 0.8186053095301599,
+    "ece_all": 0.03992986538484617,
+    "ece_kept": 0.039960918801098734,
+    "per_seed": [
+     {
+      "bacc_all": 0.8224758311137418,
+      "bacc_kept": 0.8224438290656106,
+      "ece_all": 0.039790873255292,
+      "ece_kept": 0.03981241276602544
+     },
+     {
+      "bacc_all": 0.8234420580898828,
+      "bacc_kept": 0.8234109449875332,
+      "ece_all": 0.05425084276078016,
+      "ece_kept": 0.05428138400117746
+     },
+     {
+      "bacc_all": 0.8100056018264068,
+      "bacc_kept": 0.8099611545373359,
+      "ece_all": 0.025747880138466347,
+      "ece_kept": 0.025788959636093286
+     }
+    ]
+   }
+  }
+ }
+}

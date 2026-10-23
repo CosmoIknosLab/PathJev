@@ -1,0 +1,12 @@
+# HiESD: whole-dataset clean test (no slide->patient map). Mosaics: same slide, same mask class.
+source: hiesd
+template: hiesd.yaml
+split_mode: all-test
+seed: pathjev-v1
+out: states/hiesd
+mosaic:
+  k: [2, 3, 4]
+  per_split: {test: 600}
+  mixed_ratio: 0.5
+  tile_px: 224
+  tile_mode: resize

@@ -13,6 +13,7 @@ of the paper.
 
 - **Paper:** Cristian Tommasino and Antonio M. Rinaldi, *PathJev: Decision-Native Vision–Language Modelling for
   Histopathology*, preprint, 2026 (arXiv link to be added).
+- **Code:** https://github.com/CosmoIknosLab/PathJev (this repository).
 - **Model weights:** https://huggingface.co/Cristiandieti/PathJev-P (non-commercial research use; MedGemma HAI-DEF
   terms).
 - **Demo:** https://huggingface.co/spaces/Cristiandieti/PathJev-P-demo (precomputed examples). The model repository

@@ -12,6 +12,8 @@ or no (Noul) and ordered levels (Score). The model is MedGemma-1.5-4B with LoRA 
 reads the hidden states at marker tokens closing each candidate. Training data are built deterministically from
 expert pathology annotations, with organ-specific candidate sets and whole organs held out for testing.
 
+<p align="center"><img src="assets/overview.png" width="95%" alt="PathJev overview: expert labels become typed decisions; one forward pass and one decision head return a distribution over run-time candidates"></p>
+
 This repository contains the code to build the training and test data, train PathJev-P and the generative baseline,
 evaluate all methods, run the whole-slide cluster-labelling pipeline, and regenerate every table, figure and number
 of the paper.
@@ -55,6 +57,24 @@ print(probs[0])   # one probability per candidate, plus "other"
 
 The same inference code is in [`inference/pathjev_infer/`](inference/pathjev_infer/). The weights are for
 non-commercial research use under the MedGemma (HAI-DEF) terms, and they are not intended for clinical use.
+
+## Whole-slide use
+
+PathJev can name tissue clusters in a whole slide. Tiles are embedded with H-optimus-0 and grouped by a Gaussian
+mixture with soft memberships; PathJev-P is run on the most typical tiles of each cluster, abstains when unsure, and
+cluster probabilities are propagated back to every tile.
+
+<p align="center"><img src="assets/wsi_pipeline.png" width="95%" alt="Whole-slide pipeline: tile, embed and cluster, pick typical tiles, ask PathJev, propagate to tiles"></p>
+
+The example below is a gastric slide from HiESD, an organ never seen in training. It shows, from top left: the
+thumbnail, the region annotation, the clusters, the cluster labels (grey: abstain), PathJev-P on every tile, and the
+adenocarcinoma probability propagated from the clusters. This is a qualitative demonstration on four slides. The
+fine-grained gastric classes are mostly not recognised, while the coarse question "is adenocarcinoma present?" is
+answered well (see the paper).
+
+<p align="center"><img src="assets/wsi_demo.jpg" width="95%" alt="Whole-slide demonstration on a HiESD slide"></p>
+
+<sub>Images: SICAPv2 (Silva-Rodríguez et al., 2020) and HiESD (Ge et al., 2025), both CC BY 4.0.</sub>
 
 ## Repository layout
 

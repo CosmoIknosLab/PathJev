@@ -1,0 +1,16 @@
+PathJev — code
+Copyright 2026 Cristian Tommasino and Antonio M. Rinaldi, Department of Electrical Engineering and Information
+Technology (DIETI), University of Naples Federico II.
+
+This code is licensed under the Apache License 2.0 (see LICENSE).
+
+Parts of inference/pathjev_infer/ adapt code from OmniMed-Jev (https://github.com/lytang63/OmniMed-Jev), licensed
+under the Apache License 2.0. The training and evaluation code calls the upstream OmniMed-Jev scripts, which are not
+included here (see README.md). src/shims/erbium is a minimal stand-in for an upstream dependency.
+
+The model weights (https://huggingface.co/Cristiandieti/PathJev-P) are not part of this repository. They are a Model
+Derivative of MedGemma, distributed under the Health AI Developer Foundations Terms of Use, and may be used for
+non-commercial research only (see the licence in the model repository).
+
+No dataset is redistributed here. data/manifests/ lists sample identifiers and split assignments only. Each dataset
+must be obtained from its source under its own licence (data/registry.csv).

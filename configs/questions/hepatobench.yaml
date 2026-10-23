@@ -1,0 +1,41 @@
+# HepatoBench liver patches (7 classes). Reads: Record.label (zip folder name).
+# "STE" is described as steatosis in the paper body and as "Steroidal
+# Degeneration" in the card; rendered as steatosis (fatty change).
+template_version: 1
+source: hepatobench
+organ: liver
+reads: [label]
+candidates:
+  tumour: hepatocellular tumour
+  fibrosis: fibrosis
+  inflammation: inflammation
+  necrosis: necrosis
+  normal: normal liver parenchyma
+  ductular_reaction: bile ductular reaction
+  steatosis: steatosis (fatty change)
+  organ_breast: breast
+  organ_colorectal: colon or rectum
+  organ_lung: lung
+  organ_skin: skin
+  organ_stomach: stomach
+  organ_liver: liver
+  organ_prostate: prostate
+  organ_cervix: uterine cervix
+  organ_lymph_node: lymph node
+label_map: {TUM: tumour, FIB: fibrosis, INF: inflammation, NEC: necrosis, NOR: normal, REA: ductular_reaction, STE: steatosis}
+decisions:
+  - qid: tissue
+    type: choice
+    instructions: Which tissue category best describes this liver image?
+    candidates: [tumour, fibrosis, inflammation, necrosis, normal, ductular_reaction, steatosis]
+    add_other: true
+  - qid: present:tumour
+    type: noul
+    instructions: Is tumour tissue present?
+    positive: [tumour]
+  - qid: organ
+    type: choice
+    instructions: Which organ is this tissue from?
+    candidates: [organ_breast, organ_colorectal, organ_lung, organ_skin, organ_stomach, organ_liver, organ_prostate, organ_cervix, organ_lymph_node]
+    constant_gold: organ_liver
+    add_other: true

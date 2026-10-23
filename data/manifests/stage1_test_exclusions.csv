@@ -1,0 +1,5 @@
+set,state_id,scope,matched_id,match,reason
+spider-skin,spider-skin:patch_0789779,capped+full,spider-skin:patch_1494886 (train),exact,test image duplicates a training image (dedup audit job 7548)
+spider-skin,spider-skin:patch_0968213,capped+full,spider-skin:patch_1796320 (train),near,test image near-duplicates a training image (dedup audit job 7548)
+spider-skin,spider-skin:patch_0835082,full,spider-skin:patch_0451040 (val),exact,test image duplicates a validation image (dedup audit job 7548)
+spider-skin,spider-skin:patch_1173271,full,spider-skin:patch_2429498 (train),exact,test image duplicates a training image (dedup audit job 7548)

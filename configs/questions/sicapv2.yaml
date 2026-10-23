@@ -1,0 +1,46 @@
+# SICAPv2 prostate patches (10×). Labels: majority Gleason pattern of the pixel mask
+# (NC = non-cancerous). Tier `derived` (deterministic majority of expert masks).
+template_version: 1
+source: sicapv2
+organ: prostate
+reads: [label]
+candidates:
+  benign: benign (non-cancerous) prostate tissue
+  gp3: Gleason pattern 3 carcinoma
+  gp4: Gleason pattern 4 carcinoma
+  gp5: Gleason pattern 5 carcinoma
+  organ_breast: breast
+  organ_colorectal: colon or rectum
+  organ_lung: lung
+  organ_skin: skin
+  organ_stomach: stomach
+  organ_liver: liver
+  organ_prostate: prostate
+  organ_cervix: uterine cervix
+  organ_lymph_node: lymph node
+label_map: {NC: benign, G3: gp3, G4: gp4, G5: gp5}
+decisions:
+  - qid: gleason_pattern
+    type: choice
+    instructions: Which Gleason pattern predominates in this prostate tissue?
+    candidates: [benign, gp3, gp4, gp5]
+    add_other: true
+  - qid: present:carcinoma
+    type: noul
+    instructions: Is prostate carcinoma present?
+    positive: [gp3, gp4, gp5]
+  - qid: grade_level
+    type: score
+    instructions: What is the highest Gleason pattern in this tissue?
+    levels:
+      - {id: L0, text: no carcinoma}
+      - {id: L1, text: pattern 3}
+      - {id: L2, text: pattern 4}
+      - {id: L3, text: pattern 5}
+    level_of: {benign: L0, gp3: L1, gp4: L2, gp5: L3}
+  - qid: organ
+    type: choice
+    instructions: Which organ is this tissue from?
+    candidates: [organ_breast, organ_colorectal, organ_lung, organ_skin, organ_stomach, organ_liver, organ_prostate, organ_cervix, organ_lymph_node]
+    constant_gold: organ_prostate
+    add_other: true

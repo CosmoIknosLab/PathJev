@@ -1,0 +1,9 @@
+# Phase 2 wiring check only (not a reported experiment): tiny BRACS mix with patch + mosaic states.
+name: smoke
+seed: 1
+train:
+  - {states: states/bracs/train_patch.jsonl, cap: 96}
+  - {states: states/bracs/train_mosaic_k2.jsonl, cap: 32}
+val:
+  - {states: states/bracs/val_patch.jsonl, cap: 16}
+  - {states: states/bracs/val_mosaic_k2.jsonl, cap: 8}

@@ -1,0 +1,15 @@
+# BRACS RoIs: official patient-disjoint split (D-014). Patch states = whole RoI
+# (resized by the model's processor). Mosaics = 20×-equivalent tiles cropped
+# from RoIs of the same patient (crop:2 on 0.25 µm/px RoIs).
+source: bracs
+template: bracs.yaml
+split_mode: official
+seed: pathjev-v1
+out: states/bracs
+mosaic:
+  k: [2, 3, 4]
+  per_split: {train: 1500, val: 150, test: 300}
+  mixed_ratio: 0.5
+  tile_px: 224
+  tile_mode: "crop:2"
+  with_replacement: true     # several distinct crops of the same RoI

@@ -1,0 +1,6 @@
+# HepatoBench: whole-dataset clean test (no slide IDs → no mosaics, no internal split).
+source: hepatobench
+template: hepatobench.yaml
+split_mode: all-test
+seed: pathjev-v1
+out: states/hepatobench

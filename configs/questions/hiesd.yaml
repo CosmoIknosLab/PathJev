@@ -1,0 +1,61 @@
+# HiESD gastric ESD regions (10 mask classes). "others" (residual tissue) is not a
+# Choice candidate: its target is the "other tissue / none of these" option.
+# Score follows the Correa cascade (gastritis -> atrophy -> intestinal
+# metaplasia -> carcinoma); lymphoid follicles and residual tissue are level 0.
+template_version: 1
+source: hiesd
+organ: stomach
+reads: [label]
+candidates:
+  tub1: well-differentiated tubular adenocarcinoma
+  tub2: moderately differentiated tubular adenocarcinoma
+  pap: papillary adenocarcinoma
+  others: other gastric tissue
+  normal_gland: normal gastric glands
+  chronic_gastritis: chronic gastritis
+  atrophic_gastritis: chronic atrophic gastritis
+  lymphoid_follicle: lymphoid follicle
+  complete_im: complete intestinal metaplasia
+  incomplete_im: incomplete intestinal metaplasia
+  organ_breast: breast
+  organ_colorectal: colon or rectum
+  organ_lung: lung
+  organ_skin: skin
+  organ_stomach: stomach
+  organ_liver: liver
+  organ_prostate: prostate
+  organ_cervix: uterine cervix
+  organ_lymph_node: lymph node
+label_map: {tub1: tub1, tub2: tub2, pap: pap, others: others, normal_gland: normal_gland,
+            chronic_gastritis: chronic_gastritis, atrophic_gastritis: atrophic_gastritis,
+            lymphoid_follicle: lymphoid_follicle, complete_im: complete_im, incomplete_im: incomplete_im}
+decisions:
+  - qid: tissue
+    type: choice
+    instructions: Which tissue category best describes this gastric region?
+    candidates: [tub1, tub2, pap, normal_gland, chronic_gastritis, atrophic_gastritis, lymphoid_follicle, complete_im, incomplete_im]
+    add_other: true
+  - qid: present:adenocarcinoma
+    type: noul
+    instructions: Is adenocarcinoma present?
+    positive: [tub1, tub2, pap]
+  - qid: present:intestinal_metaplasia
+    type: noul
+    instructions: Is intestinal metaplasia present?
+    positive: [complete_im, incomplete_im]
+  - qid: correa_stage
+    type: score
+    instructions: How far along the gastritis–atrophy–metaplasia–carcinoma sequence is this region?
+    levels:
+      - {id: L0, text: no atrophy or metaplasia}
+      - {id: L1, text: atrophic gastritis}
+      - {id: L2, text: intestinal metaplasia}
+      - {id: L3, text: adenocarcinoma}
+    level_of: {normal_gland: L0, chronic_gastritis: L0, lymphoid_follicle: L0, others: L0,
+               atrophic_gastritis: L1, complete_im: L2, incomplete_im: L2, tub1: L3, tub2: L3, pap: L3}
+  - qid: organ
+    type: choice
+    instructions: Which organ is this tissue from?
+    candidates: [organ_breast, organ_colorectal, organ_lung, organ_skin, organ_stomach, organ_liver, organ_prostate, organ_cervix, organ_lymph_node]
+    constant_gold: organ_stomach
+    add_other: true

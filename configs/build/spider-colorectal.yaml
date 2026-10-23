@@ -1,0 +1,13 @@
+# SPIDER-colorectal: re-split 80/10/10 by slide hash; the official split leaks slides (D-018).
+# Mosaics: k×k labelled central patches of the same slide and class (D-013).
+source: spider_colorectal
+template: spider-colorectal.yaml
+split_mode: hash          # official SPIDER split is NOT slide-disjoint (D-018)
+seed: pathjev-v1
+out: states/spider-colorectal
+mosaic:
+  k: [2, 3, 4]
+  per_split: {train: 3000, val: 300, test: 600}
+  mixed_ratio: 0.5
+  tile_px: 224
+  tile_mode: resize

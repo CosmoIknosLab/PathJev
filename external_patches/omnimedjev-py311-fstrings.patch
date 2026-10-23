@@ -1,0 +1,25 @@
+diff --git a/omnimedjev/sanity.py b/omnimedjev/sanity.py
+index b07777f..859a5ec 100644
+--- a/omnimedjev/sanity.py
++++ b/omnimedjev/sanity.py
+@@ -32,15 +32,15 @@ def print_environment_check_results(results: dict[str, Any], *, console: Console
+             f"{info.memory_utilization_percent:.2f}"
+         )
+     console.print(table)
+-    console.print(f"Dataset availability: {results["dataset"]}")
+-    console.print(f"Preprocessed dataset availability: {results["preprocessed_dataset"]}")
+-    console.print(f"CUDA version: {results["cuda"]}")
++    console.print(f"Dataset availability: {results['dataset']}")
++    console.print(f"Preprocessed dataset availability: {results['preprocessed_dataset']}")
++    console.print(f"CUDA version: {results['cuda']}")
+ 
+ 
+ def check_satisfied_or_throw(results: dict[str, Any], dataset: bool, preprocessed_dataset: bool, cuda: bool) -> None:
+     if dataset and not results["dataset"].startswith("OK"):
+-        raise RuntimeError(f"Dataset check failed: {results["dataset"]}")
++        raise RuntimeError(f"Dataset check failed: {results['dataset']}")
+     if preprocessed_dataset and not results["preprocessed_dataset"].startswith("OK"):
+-        raise RuntimeError(f"Preprocessed dataset check failed: {results["preprocessed_dataset"]}")
++        raise RuntimeError(f"Preprocessed dataset check failed: {results['preprocessed_dataset']}")
+     if cuda and not results["cuda"]:
+         raise RuntimeError("CUDA not available")

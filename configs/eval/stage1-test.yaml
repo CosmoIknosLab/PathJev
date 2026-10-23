@@ -1,0 +1,14 @@
+# Stage 1 Phase 4 primary analysis sets (stage1_analysis_plan.md amendment A1, D-028):
+# identical states for every arm. BRACS/SICAPv2 in full (cap 0 = all); large sets capped
+# at 5,000 states with the class-stratified draw used for training mixes.
+name: stage1-test
+seed: 7
+sets:
+  - {name: bracs, states: states/bracs/test_patch.jsonl, cap: 0}
+  - {name: sicapv2, states: states/sicapv2/test_patch.jsonl, cap: 0}
+  - {name: hepatobench, states: states/hepatobench/test_patch.jsonl, cap: 5000}
+  - {name: hiesd, states: states/hiesd/test_patch.jsonl, cap: 5000}
+  - {name: spider-colorectal, states: states/spider-colorectal/test_patch.jsonl, cap: 5000}
+  - {name: spider-thorax, states: states/spider-thorax/test_patch.jsonl, cap: 5000}
+  - {name: spider-breast, states: states/spider-breast/test_patch.jsonl, cap: 5000}
+  - {name: spider-skin, states: states/spider-skin/test_patch.jsonl, cap: 5000}

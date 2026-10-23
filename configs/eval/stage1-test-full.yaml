@@ -1,0 +1,14 @@
+# Stage 1 Phase 4 SECONDARY sets: full test files (amendment A1); all arms except Gen-SFT.
+# Every test file in full (cap 0); states with an empty image file are dropped (D-030).
+name: stage1-test-full
+seed: 7
+drop_unreadable: true   # HepatoBench release ships one 0-byte image (02_FIB_3355.png), D-030
+sets:
+  - {name: bracs, states: states/bracs/test_patch.jsonl, cap: 0}
+  - {name: sicapv2, states: states/sicapv2/test_patch.jsonl, cap: 0}
+  - {name: hepatobench, states: states/hepatobench/test_patch.jsonl, cap: 0}
+  - {name: hiesd, states: states/hiesd/test_patch.jsonl, cap: 0}
+  - {name: spider-colorectal, states: states/spider-colorectal/test_patch.jsonl, cap: 0}
+  - {name: spider-thorax, states: states/spider-thorax/test_patch.jsonl, cap: 0}
+  - {name: spider-breast, states: states/spider-breast/test_patch.jsonl, cap: 0}
+  - {name: spider-skin, states: states/spider-skin/test_patch.jsonl, cap: 0}

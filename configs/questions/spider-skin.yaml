@@ -1,0 +1,130 @@
+# SPIDER-skin (HistAI; CC BY-NC 4.0). Labels = central-patch class strings from metadata.json (24 classes;
+# 'Mercel cell carcinoma' and 'Kaposi’s sarcoma' are the dataset's own spellings). 'Carcinoma in situ' is
+# rendered as squamous cell carcinoma in situ (cutaneous context; ASSUMED, check with a pathologist).
+template_version: 1
+source: spider-skin
+organ: skin
+reads:
+- label
+candidates:
+  actinic_keratosis: actinic keratosis
+  apocrine_glands: apocrine glands
+  bcc: basal cell carcinoma
+  scc_in_situ: squamous cell carcinoma in situ
+  collagen: dermal collagen
+  epidermis: normal epidermis
+  fat: adipose tissue
+  follicle: hair follicle
+  inflammation: inflammation
+  melanoma_invasive: invasive melanoma
+  kaposi: Kaposi sarcoma
+  keratin: keratin
+  melanoma_in_situ: melanoma in situ
+  merkel: Merkel cell carcinoma
+  muscle: muscle
+  necrosis: necrosis
+  nerves: nerves
+  nevus: melanocytic nevus
+  sebaceous: sebaceous gland
+  seborrheic_keratosis: seborrheic keratosis
+  solar_elastosis: solar elastosis
+  scc: invasive squamous cell carcinoma
+  vessels: blood vessels
+  wart: viral wart (verruca)
+  organ_breast: breast
+  organ_colorectal: colon or rectum
+  organ_lung: lung
+  organ_skin: skin
+  organ_stomach: stomach
+  organ_liver: liver
+  organ_prostate: prostate
+  organ_cervix: uterine cervix
+  organ_lymph_node: lymph node
+label_map:
+  Actinic keratosis: actinic_keratosis
+  Apocrine glands: apocrine_glands
+  Basal cell carcinoma: bcc
+  Carcinoma in situ: scc_in_situ
+  Collagen: collagen
+  Epidermis: epidermis
+  Fat: fat
+  Follicle: follicle
+  Inflammation: inflammation
+  Invasive melanoma: melanoma_invasive
+  Kaposi’s sarcoma: kaposi
+  Keratin: keratin
+  Melanoma in situ: melanoma_in_situ
+  Mercel cell carcinoma: merkel
+  Muscle: muscle
+  Necrosis: necrosis
+  Nerves: nerves
+  Nevus: nevus
+  Sebaceous gland: sebaceous
+  Seborrheic keratosis: seborrheic_keratosis
+  Solar elastosis: solar_elastosis
+  Squamous cell carcinoma: scc
+  Vessels: vessels
+  Wart: wart
+decisions:
+- qid: tissue
+  type: choice
+  instructions: Which tissue category best describes the central region of this skin image?
+  candidates:
+  - actinic_keratosis
+  - apocrine_glands
+  - bcc
+  - scc_in_situ
+  - collagen
+  - epidermis
+  - fat
+  - follicle
+  - inflammation
+  - melanoma_invasive
+  - kaposi
+  - keratin
+  - melanoma_in_situ
+  - merkel
+  - muscle
+  - necrosis
+  - nerves
+  - nevus
+  - sebaceous
+  - seborrheic_keratosis
+  - solar_elastosis
+  - scc
+  - vessels
+  - wart
+  add_other: true
+- qid: present:malignant_tumour
+  type: noul
+  instructions: Is a malignant tumour (in situ or invasive) present?
+  positive:
+  - bcc
+  - scc
+  - scc_in_situ
+  - melanoma_invasive
+  - melanoma_in_situ
+  - merkel
+  - kaposi
+- qid: present:melanocytic_lesion
+  type: noul
+  instructions: Is a melanocytic lesion (nevus or melanoma) present?
+  positive:
+  - nevus
+  - melanoma_in_situ
+  - melanoma_invasive
+- qid: organ
+  type: choice
+  instructions: Which organ is this tissue from?
+  candidates:
+  - organ_breast
+  - organ_colorectal
+  - organ_lung
+  - organ_skin
+  - organ_stomach
+  - organ_liver
+  - organ_prostate
+  - organ_cervix
+  - organ_lymph_node
+  constant_gold: organ_skin
+  add_other: true

@@ -1,0 +1,14 @@
+# Stage 1 pilot evaluation sets (D-020, D-024): patch states only; class-stratified
+# subsets so that every arm is scored on exactly the same states. Clean tests capped
+# at 2,000 states, seen-source SPIDER tests at 1,000. Not the Phase 4 test sets.
+name: pilot-stage1
+seed: 1
+sets:
+  - {name: bracs, states: states/bracs/test_patch.jsonl, cap: 2000}
+  - {name: sicapv2, states: states/sicapv2/test_patch.jsonl, cap: 2000}
+  - {name: hepatobench, states: states/hepatobench/test_patch.jsonl, cap: 2000}
+  - {name: hiesd, states: states/hiesd/test_patch.jsonl, cap: 2000}
+  - {name: spider-colorectal, states: states/spider-colorectal/test_patch.jsonl, cap: 1000}
+  - {name: spider-thorax, states: states/spider-thorax/test_patch.jsonl, cap: 1000}
+  - {name: spider-breast, states: states/spider-breast/test_patch.jsonl, cap: 1000}
+  - {name: spider-skin, states: states/spider-skin/test_patch.jsonl, cap: 1000}

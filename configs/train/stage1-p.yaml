@@ -1,0 +1,20 @@
+# Stage 1 Phase 4 (D-024, D-029): patch states from the six validated sources, 40,000 train states.
+# BRACS and SICAPv2 train in full (cap 0); SPIDER x4 capped at 6,733 each (class-stratified).
+# Validation: patch states only (Stage 1 is patch-level), 2,100 states, used for checkpoint and
+# configuration selection (D-020 rule); never test data.
+name: stage1-p
+seed: 1
+train:
+  - {states: states/bracs/train_patch.jsonl, cap: 0}
+  - {states: states/sicapv2/train_patch.jsonl, cap: 0}
+  - {states: states/spider-colorectal/train_patch.jsonl, cap: 6733}
+  - {states: states/spider-thorax/train_patch.jsonl, cap: 6733}
+  - {states: states/spider-breast/train_patch.jsonl, cap: 6733}
+  - {states: states/spider-skin/train_patch.jsonl, cap: 6733}
+val:
+  - {states: states/bracs/val_patch.jsonl, cap: 0}
+  - {states: states/sicapv2/val_patch.jsonl, cap: 0}
+  - {states: states/spider-colorectal/val_patch.jsonl, cap: 310}
+  - {states: states/spider-thorax/val_patch.jsonl, cap: 310}
+  - {states: states/spider-breast/val_patch.jsonl, cap: 310}
+  - {states: states/spider-skin/val_patch.jsonl, cap: 310}

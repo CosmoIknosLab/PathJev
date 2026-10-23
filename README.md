@@ -1,5 +1,10 @@
 # PathJev: decision-native vision–language modelling for histopathology
 
+[![Model on Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Model-Cristiandieti%2FPathJev--P-yellow)](https://huggingface.co/Cristiandieti/PathJev-P)
+[![Demo on Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Demo-PathJev--P--demo-orange)](https://huggingface.co/spaces/Cristiandieti/PathJev-P-demo)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/CosmoIknosLab/PathJev/blob/main/inference/PathJev_demo.ipynb)
+[![Code licence: Apache-2.0](https://img.shields.io/badge/code-Apache--2.0-blue)](LICENSE)
+
 PathJev is a decision-native vision–language model for histopathology. Given an image, a question and a set of
 candidate answers chosen at run time, it returns a normalised probability distribution over the candidates,
 including "none of these", in a single forward pass. It handles three question types: one of K classes (Choice), yes
@@ -20,6 +25,36 @@ of the paper.
   also has a Colab notebook for live use on a free GPU.
 
 Not intended or validated for clinical use.
+
+
+## Quick start: use the trained model
+
+The trained PathJev-P weights (LoRA adapter and decision head) are on Hugging Face, at
+[Cristiandieti/PathJev-P](https://huggingface.co/Cristiandieti/PathJev-P). You need access to the base model
+`google/medgemma-1.5-4b-it`: accept its terms on Hugging Face and log in with `huggingface-cli login`. To try it
+without installing anything, open the [Colab notebook](https://colab.research.google.com/github/CosmoIknosLab/PathJev/blob/main/inference/PathJev_demo.ipynb),
+which runs on a free GPU.
+
+```python
+# pip install "transformers>=4.50" peft bitsandbytes accelerate pillow huggingface_hub   (4-bit needs a CUDA GPU)
+import sys
+from huggingface_hub import snapshot_download
+local = snapshot_download("Cristiandieti/PathJev-P")      # weights + inference code
+sys.path.insert(0, local)
+from pathjev_infer import PathJev
+
+model = PathJev.load(local, token=True)
+probs = model.predict("patch.png", [{
+    "instructions": "Which Gleason pattern predominates in this prostate tissue?",
+    "candidates": [{"id": "benign", "text": "benign (non-cancerous) prostate tissue"},
+                   {"id": "gp3", "text": "Gleason pattern 3 carcinoma"},
+                   {"id": "gp4", "text": "Gleason pattern 4 carcinoma"},
+                   {"id": "gp5", "text": "Gleason pattern 5 carcinoma"}]}], add_other=True)
+print(probs[0])   # one probability per candidate, plus "other"
+```
+
+The same inference code is in [`inference/pathjev_infer/`](inference/pathjev_infer/). The weights are for
+non-commercial research use under the MedGemma (HAI-DEF) terms, and they are not intended for clinical use.
 
 ## Repository layout
 

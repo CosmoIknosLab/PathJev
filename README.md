@@ -1,5 +1,6 @@
 # PathJev: decision-native vision–language modelling for histopathology
 
+[![arXiv](https://img.shields.io/badge/arXiv-2610.32478-b31b1b)](https://arxiv.org/abs/2610.32478)
 [![Model on Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Model-Cristiandieti%2FPathJev--P-yellow)](https://huggingface.co/Cristiandieti/PathJev-P)
 [![Demo on Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Demo-PathJev--P--demo-orange)](https://huggingface.co/spaces/Cristiandieti/PathJev-P-demo)
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/CosmoIknosLab/PathJev/blob/main/inference/PathJev_demo.ipynb)
@@ -19,7 +20,7 @@ evaluate all methods, run the whole-slide cluster-labelling pipeline, and regene
 of the paper.
 
 - **Paper:** Cristian Tommasino and Antonio M. Rinaldi, *PathJev: Decision-Native Vision–Language Modelling for
-  Histopathology*, preprint, 2026 (arXiv link to be added).
+  Histopathology*, [arXiv:2610.32478](https://arxiv.org/abs/2610.32478), 2026.
 - **Code:** https://github.com/CosmoIknosLab/PathJev (this repository).
 - **Model weights:** https://huggingface.co/Cristiandieti/PathJev-P (non-commercial research use; MedGemma HAI-DEF
   terms).
@@ -203,11 +204,14 @@ repository. That log is not part of this release; the analysis plan is.
 
 ```bibtex
 @misc{tommasino2026pathjev,
-  title  = {PathJev: Decision-Native Vision--Language Modelling for Histopathology},
-  author = {Tommasino, Cristian and Rinaldi, Antonio M.},
-  year   = {2026},
-  note   = {Preprint. Department of Electrical Engineering and Information Technology (DIETI),
-            University of Naples Federico II. arXiv link to be added}
+  title         = {PathJev: Decision-Native Vision--Language Modelling for Histopathology},
+  author        = {Tommasino, Cristian and Rinaldi, Antonio M.},
+  year          = {2026},
+  eprint        = {2610.32478},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CV},
+  doi           = {10.48550/arXiv.2610.32478},
+  url           = {https://arxiv.org/abs/2610.32478}
 }
 ```
 

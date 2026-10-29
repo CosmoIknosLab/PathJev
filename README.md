@@ -202,6 +202,8 @@ repository. That log is not part of this release; the analysis plan is.
 
 ## Citation
 
+If you use this code or the model, please cite:
+
 ```bibtex
 @misc{tommasino2026pathjev,
   title         = {PathJev: Decision-Native Vision--Language Modelling for Histopathology},
